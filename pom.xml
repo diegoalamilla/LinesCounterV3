@@ -79,7 +79,7 @@
                             <jar>target/${project.build.finalName}.jar</jar>
                             <outfile>target/${project.build.finalName}.exe</outfile>
                             <classPath>
-                                <mainClass>com.proy.Main</mainClass>
+                                <mainClass>com.proy.ApplicationLauncher</mainClass>
                             </classPath>
                             <headerType>console</headerType>
                             <errTitle>Error</errTitle>
@@ -101,7 +101,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.proy.Main</mainClass>
+                            <mainClass>com.proy.ApplicationLauncher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

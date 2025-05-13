@@ -1,7 +1,8 @@
 package com.proy.validator.concreteValidators;
 
-import com.proy.exceptions.CodeStandarException;
-import com.proy.validator.validatorContext.CodeValidationContext;
+import com.proy.Domain.validator.concreteValidators.OrganizationalStructureValidator;
+import com.proy.Domain.exceptions.CodeStandarException;
+import com.proy.Domain.validator.validatorContext.CodeValidationContext;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -6,8 +6,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.proy.exceptions.CodeStandarException;
-import com.proy.validator.validatorContext.CodeValidationContext;
+import com.proy.Domain.validator.concreteValidators.FunctionStructureValidator;
+import com.proy.Domain.exceptions.CodeStandarException;
+import com.proy.Domain.validator.validatorContext.CodeValidationContext;
 import org.junit.Before;
 import org.junit.Test;
 

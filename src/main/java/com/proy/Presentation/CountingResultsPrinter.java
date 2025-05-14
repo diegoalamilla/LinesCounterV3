@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @version 2.2
  */
-public class ResultsPrinter {
+public class CountingResultsPrinter {
 
     /**
      * Imprime en consola los resultados de un directorio y sus subdirectorios.
@@ -62,7 +62,7 @@ public class ResultsPrinter {
                     directory.getTotalPhysicalLines());
         }
 
-        directory.getDirectories().forEach(ResultsPrinter::showDirectoryResults);
+        directory.getDirectories().forEach(CountingResultsPrinter::showDirectoryResults);
     }
 
     /**

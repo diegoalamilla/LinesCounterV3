@@ -9,7 +9,7 @@ import com.proy.Domain.DirectoryAnalyzer;
 import com.proy.Domain.ProjectComparator;
 import com.proy.Domain.SourceFileAnalyzer;
 import com.proy.Domain.Directory;
-import com.proy.Presentation.ResultsPrinter;
+import com.proy.Presentation.CountingResultsPrinter;
 
 /**
  * La clase ProgramProcessor procesa un archivo o directorio dado,
@@ -42,10 +42,10 @@ public class ProgramAnalyzer {
             processFile(modifiedProjectPath);
         }
 
-        ProjectComparator pc = new ProjectComparator();
+        ProjectComparator pc = new ProjectComparator(originalProjectPath, modifiedProjectPath, reportGenerationPath);
 
         try {
-            pc.compareFiles(originalProjectPath, modifiedProjectPath, reportGenerationPath);
+            pc.compareProjects();
         } catch (Exception e) {
             System.out.println("Error al comparar los archivos: " + e.getMessage());
         }
@@ -63,7 +63,7 @@ public class ProgramAnalyzer {
     private void processDirectory(Path directoryFile) throws FileNotFoundException {
         DirectoryAnalyzer directoryAnalyzer = new DirectoryAnalyzer(new File(directoryFile.toString()));
         Directory directory = directoryAnalyzer.countLinesInDirectory();
-        ResultsPrinter.printResultsByDirectory(directory);
+        CountingResultsPrinter.printResultsByDirectory(directory);
     }
 
     /**
@@ -77,6 +77,6 @@ public class ProgramAnalyzer {
     private void processFile(Path file) throws FileNotFoundException {
         SourceFileAnalyzer sourceFileAnalyzer = new SourceFileAnalyzer(new File(file.toString()));
         sourceFileAnalyzer.countLinesInFile();
-        ResultsPrinter.printResultsByFile(sourceFileAnalyzer.getCodeSegment());
+        CountingResultsPrinter.printResultsByFile(sourceFileAnalyzer.getCodeSegment());
     }
 }

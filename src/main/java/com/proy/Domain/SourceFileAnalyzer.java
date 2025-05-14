@@ -35,6 +35,7 @@ public class SourceFileAnalyzer {
      * estructuras de organización y de estructuras de definición
      */
     public void countLinesInFile() {
+
         if (!SourceFileAnalyzer.isJavaFile(file)) {
             System.out.println(this.file.getName() + " no es un archivo con extensión válida");
             return;

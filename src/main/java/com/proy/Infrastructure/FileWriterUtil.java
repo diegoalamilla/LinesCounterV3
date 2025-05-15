@@ -7,13 +7,15 @@ import java.util.List;
 
 public class FileWriterUtil {
 
-    public static void writeLinesToFile(Path filePath, List<String> lines) throws IOException {
-        Files.createDirectories(filePath.getParent());
-        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
-            for (String line : lines) {
-                writer.write(line);
-                writer.newLine();
+        public static void writeLinesToFile(Path filePath, List<String> lines) throws IOException {
+            Files.createDirectories(filePath.getParent());
+            try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
+                for (String line : lines) {
+                    if (line != null) {
+                        writer.write(line);
+                        writer.newLine();
+                    }
+                }
             }
         }
     }
-}

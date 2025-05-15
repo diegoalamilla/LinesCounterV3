@@ -42,10 +42,18 @@ public class ProgramAnalyzer {
             processFile(modifiedProjectPath);
         }
 
-        ProjectComparator pc = new ProjectComparator(originalProjectPath, modifiedProjectPath, reportGenerationPath);
-
+        
+        ProjectComparator pc = new ProjectComparator(
+            originalProjectPath, 
+            modifiedProjectPath, 
+            reportGenerationPath, 
+            originalProjectPath,
+            modifiedProjectPath, 
+            reportGenerationPath.resolve(originalProjectPath.getFileName().toString()), 
+            reportGenerationPath.resolve(modifiedProjectPath.getFileName().toString()));
         try {
             pc.compareProjects();
+            pc.writeGlobalSummary(reportGenerationPath);
         } catch (Exception e) {
             System.out.println("Error al comparar los archivos: " + e.getMessage());
         }

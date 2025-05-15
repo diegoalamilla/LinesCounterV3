@@ -21,7 +21,7 @@ public class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         Scanner scanner = new Scanner(inputStream);
 
-        Path result = UserInputHandler.getInput(scanner);
+        Path result = UserInputHandler.requestValidPath(scanner);
         
         assertEquals(Paths.get(simulatedInput), result);
     }
@@ -32,7 +32,7 @@ public class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         Scanner scanner = new Scanner(inputStream);
 
-        Path result = UserInputHandler.getInput(scanner);
+        Path result = UserInputHandler.requestValidPath(scanner);
         
         assertEquals(Paths.get(simulatedInput), result);
     }
@@ -42,6 +42,6 @@ public class UserInputHandlerTest {
         String simulatedInput = "src\\test\\resour";
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         Scanner scanner = new Scanner(inputStream); 
-        assertThrows(InvalidPathException.class, ()-> UserInputHandler.getInput(scanner));
+        assertThrows(InvalidPathException.class, ()-> UserInputHandler.requestValidPath(scanner));
     }
 }

@@ -1,4 +1,4 @@
-package com.proy.readers;
+package com.proy.Infraestructure;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -78,7 +78,6 @@ public class ProjectComparator {
                 reportLinesModified.add(modifiedLine);
                 originalIndex++;
                 modifiedIndex++;
-
             } else if (originalLine != null 
             && (modifiedLine == null || modifiedLine.trim().isEmpty())) {
                 String msg = "The line " + (originalIndex+1) + " was erased";
@@ -174,7 +173,6 @@ public class ProjectComparator {
         if (longestLength == 0) {
             return 1.0;
         }
-        // 1.0 = idénticas, 0.0 = totalmente distintas
         return 1.0 - ((double) editDistance / longestLength);
     }
 

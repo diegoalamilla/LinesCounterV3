@@ -2,11 +2,13 @@ package com.proy.Application;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.proy.Domain.DirectoryAnalyzer;
 import com.proy.Domain.ProjectComparator;
+import com.proy.Domain.ProjectRefactor;
 import com.proy.Domain.SourceFileAnalyzer;
 import com.proy.Domain.Directory;
 import com.proy.Presentation.CountingResultsPrinter;
@@ -42,6 +44,7 @@ public class ProgramAnalyzer {
             processFile(modifiedProjectPath);
         }
 
+        //nueva instancia
         
         ProjectComparator pc = new ProjectComparator(
             originalProjectPath, 
@@ -58,6 +61,14 @@ public class ProgramAnalyzer {
             System.out.println("Error al comparar los archivos: " + e.getMessage());
         }
 
+        ProjectRefactor ref = new ProjectRefactor();
+        try {
+            System.out.println(reportGenerationPath.resolve(modifiedProjectPath.getFileName().toString()));
+            ref.refactorPath(reportGenerationPath.resolve(originalProjectPath.getFileName().toString()));
+            ref.refactorPath(reportGenerationPath.resolve(modifiedProjectPath.getFileName().toString()));
+        } catch (IOException e) {
+            System.err.println("Error al refactorizar: " + e.getMessage());
+        }
     }
 
     /**

@@ -41,6 +41,11 @@ public class ProjectComparator {
         this.modifiedReportBase = modifiedReportBase;
     }
 
+    /**
+     * Compara archivos o directorios dependiendo de si la ruta de entrada es un archivo o carpeta.
+     *
+     * @throws IOException si ocurre un error al leer archivos.
+     */
     public void compareProjects() throws IOException {
         if (originalFilePath.toFile().isFile()) {
             compareFiles();
@@ -49,6 +54,12 @@ public class ProjectComparator {
         }
     }
 
+    /**
+     * Compara dos archivos línea por línea. Determina si las líneas son iguales,
+     * borradas, añadidas o ligeramente modificadas, y genera reportes para ambas versiones.
+     *
+     * @throws IOException si ocurre un error al leer o escribir archivos.
+     */
     private void compareFiles() throws IOException {
         List<String> originalLines = Files.readAllLines(this.originalFilePath);
         List<String> modifiedLines = Files.readAllLines(this.modifiedFilePath);
@@ -157,8 +168,12 @@ public class ProjectComparator {
 
 
     /**
-     * Calcula el porcentaje de similitud entre dos líneas de código
-     * usando la distancia de Levenshtein.
+     * Calcula el grado de similitud entre dos líneas utilizando la distancia de Levenshtein.
+     * El resultado es un valor entre 0 y 1, donde 1 representa una igualdad exacta.
+     *
+     * @param originalLine Línea del archivo original.
+     * @param modifiedLine Línea del archivo modificado.
+     * @return porcentaje de similitud (de 0.0 a 1.0).
      */
     private double calculateSimilarity(String originalLine, String modifiedLine) {
         if (originalLine == null || modifiedLine == null
@@ -177,8 +192,12 @@ public class ProjectComparator {
     }
 
     /**
-     * Devuelve la distancia de Levenshtein (número mínimo de ediciones)
-     * para convertir source en target.
+     * Calcula la distancia de Levenshtein entre dos cadenas, que representa el número mínimo
+     * de operaciones (inserciones, eliminaciones o sustituciones) para convertir una en otra.
+     *
+     * @param originalLine Línea original.
+     * @param modifiedLine Línea modificada.
+     * @return distancia de Levenshtein.
      */
     private int computeLevenshteinDistance(String originalLine, String modifiedLine) {
         int originalLineLength = originalLine.length();
@@ -210,6 +229,12 @@ public class ProjectComparator {
         return distanceMatrix[originalLineLength][modifiedLineLength];
     }
 
+    /**
+     * Compara dos directorios recursivamente, entrando en subdirectorios
+     * y comparando archivos con extensión ".java".
+     *
+     * @throws IOException si ocurre un error al acceder al sistema de archivos.
+     */
     private void compareDirectories() throws IOException {
         File[] directoryEntries = listDirectoryEntries(this.originalFilePath.toFile());
 
@@ -246,6 +271,13 @@ public class ProjectComparator {
         }
     }
 
+    /**
+     * Escribe el resumen global de las diferencias entre ambos proyectos en un archivo
+     * llamado {@code modificationsSummary.txt}.
+     *
+     * @param reportGenerationPath Ruta donde se escribirá el resumen.
+     * @throws IOException si ocurre un error al escribir el archivo.
+     */
     public void writeGlobalSummary(Path reportGenerationPath) throws IOException {
         String fileName = "modificationsSummary.txt";
         Path reportSummaryPath = reportGenerationPath.resolve(fileName);
@@ -256,6 +288,12 @@ public class ProjectComparator {
         
     }
 
+    /**
+     * Lista todos los archivos y subdirectorios en un directorio dado.
+     *
+     * @param directory El directorio a listar.
+     * @return un arreglo de {@code File} que contiene los elementos del directorio.
+     */
     private File[] listDirectoryEntries(File directory) {
         return directory.listFiles() != null ? directory.listFiles() : new File[0];
     }

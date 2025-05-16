@@ -35,11 +35,9 @@ public class FileReaderUtilTest {
             writer.write("Tercera línea\n");
         }
         
-        // Crear un archivo vacío
         emptyFile = new File("emptyFile.txt");
         emptyFile.createNewFile();
         
-        // Archivo inexistente
         nonExistentFile = new File("nonExistentFile.txt");
     }
 

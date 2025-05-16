@@ -7,7 +7,25 @@ import java.util.Scanner;
 import com.proy.Application.ProgramAnalyzer;
 import com.proy.Presentation.UserInputHandler;
 
+/**
+ * La clase {@code ApplicationLauncher} actúa como punto de entrada para la aplicación
+ * de análisis de versiones de proyectos Java.
+ *
+ * <p>Solicita al usuario las rutas del proyecto original, el proyecto modificado
+ * y el directorio donde se almacenará el reporte de diferencias.</p>
+ *
+ * <p>Después, delega el análisis de los proyectos a la clase {@link ProgramAnalyzer}.</p>
+ */
 public class ApplicationLauncher {
+    /**
+     * Método principal que inicia la ejecución del programa.
+     *
+     * <p>Este método guía al usuario mediante mensajes en consola para proporcionar las rutas
+     * necesarias, e invoca el análisis de los proyectos especificados. Maneja errores
+     * relacionados con archivos y excepciones generales, notificando al usuario cuando sea necesario.</p>
+     *
+     * @param args Argumentos de línea de comandos (no utilizados en esta aplicación).
+     */
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
 

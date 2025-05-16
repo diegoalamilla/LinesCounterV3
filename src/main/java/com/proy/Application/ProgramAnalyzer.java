@@ -18,7 +18,7 @@ import com.proy.Presentation.CountingResultsPrinter;
  * contando las líneas de código de los archivos contenidos y mostrando los
  * resultados.
  * 
- * @version 1.0
+ * @version 3.0
  */
 
 public class ProgramAnalyzer {
@@ -43,8 +43,6 @@ public class ProgramAnalyzer {
         } else if (Files.isRegularFile(modifiedProjectPath)) {
             processFile(modifiedProjectPath);
         }
-
-        //nueva instancia
         
         ProjectComparator pc = new ProjectComparator(
             originalProjectPath, 

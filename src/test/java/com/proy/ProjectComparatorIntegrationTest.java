@@ -35,7 +35,6 @@ public class ProjectComparatorIntegrationTest {
         Files.createDirectories(modifiedRoot);
         Files.createDirectories(reportDir);
 
-        // Crear archivos Java originales y modificados
         Path originalFile = originalRoot.resolve("Test.java");
         Path modifiedFile = modifiedRoot.resolve("Test.java");
 

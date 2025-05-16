@@ -19,8 +19,6 @@ import static org.junit.Assert.*;
  * la creación de directorios padres y el manejo de errores.
  */
 public class FileWriterUtilTest {
-
-    // Regla para crear un directorio temporal que se limpia automáticamente después de cada prueba.
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
@@ -32,16 +30,10 @@ public class FileWriterUtilTest {
      */
     @Test
     public void testWriteLinesToFile() throws IOException {
-        // Preparar datos de entrada
         List<String> lines = Arrays.asList("Línea 1", "Línea 2", "Línea 3");
 
-        // Crear un archivo dentro de una carpeta temporal
         Path testFilePath = tempFolder.newFolder("testDir").toPath().resolve("testFile.txt");
-
-        // Ejecutar el método bajo prueba
         FileWriterUtil.writeLinesToFile(testFilePath, lines);
-
-        // Validar que el archivo fue creado y contiene las líneas correctas
         assertTrue("El archivo debería existir", Files.exists(testFilePath));
 
         List<String> readLines = Files.readAllLines(testFilePath);
@@ -56,11 +48,8 @@ public class FileWriterUtilTest {
      */
     @Test(expected = IOException.class)
     public void testWriteLinesToFileWithInvalidPath() throws IOException {
-        // Crear un directorio (no un archivo)
         Path directoryPath = tempFolder.newFolder("existingDir").toPath();
         List<String> lines = Arrays.asList("Esta escritura debería fallar");
-
-        // Ejecutar el método bajo prueba. Se espera IOException al intentar escribir en un directorio.
         FileWriterUtil.writeLinesToFile(directoryPath, lines);
     }
 
@@ -70,16 +59,13 @@ public class FileWriterUtilTest {
      */
     @Test
     public void testWriteLinesToFileCreatesParentDirectories() throws IOException {
-        // Crear una ruta profunda con múltiples directorios inexistentes
         Path deepPath = tempFolder.getRoot().toPath()
                 .resolve("dir1/dir2/dir3/testFile.txt");
 
         List<String> lines = Arrays.asList("Contenido de prueba");
 
-        // Ejecutar el método bajo prueba
         FileWriterUtil.writeLinesToFile(deepPath, lines);
 
-        // Validar que los directorios padres y el archivo fueron creados correctamente
         assertTrue("Los directorios padres deberían existir", Files.exists(deepPath.getParent()));
         assertTrue("El archivo debería existir", Files.exists(deepPath));
     }

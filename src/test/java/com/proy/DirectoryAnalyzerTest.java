@@ -19,7 +19,6 @@ public class DirectoryAnalyzerTest {
 
     @Test
     public void testDirectoryAnalyzerCountsJavaFiles() throws Exception {
-        // Crear estructura de carpetas y archivos
         File rootDir = tempFolder.newFolder("src");
         File javaFile1 = new File(rootDir, "File1.java");
         File javaFile2 = new File(rootDir, "File2.java");
